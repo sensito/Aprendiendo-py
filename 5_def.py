@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
-mport turtle
+import turtle
+
+
 
 window = turtle.Screen()
 daniel = turtle.Turtle()
