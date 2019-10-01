@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import random
+import os
 
 
 IMAGES = ['''
@@ -70,7 +71,7 @@ IMAGES = ['''
 ''']
 
 WORDS = [
-'LAVADORA',
+'lavadora',
 'secadora',
 'gobierno',
 'diputado',
@@ -96,8 +97,34 @@ def run():
     while True:
         display_board(hidden_word, tries)
         current_letter = str(input('Escoje una letra: '))
+        os.system('cls')
 
 
+        letter_indexes = []
+        for idx in range(len(word)):
+            if word[idx] == current_letter:
+                letter_indexes.append(idx)
+
+        if len(letter_indexes) == 0:
+            tries += 1
+
+            if tries == 7:
+                display_board(hidden_word, tries)
+                print('')
+                print('Perdiste La palabra corresta es: {}'.format(word))
+                break
+        else:
+            for idx in letter_indexes:
+                hidden_word[idx] = current_letter
+
+            letter_indexes = []
+
+        try:
+            hidden_word.index('-')
+        except ValueError:
+            print('')
+            print('Ganaste')
+            break
 
 if __name__ == '__main__':
     print('B I E N V E N I D O S')
